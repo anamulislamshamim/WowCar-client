@@ -1,10 +1,9 @@
-import Navbar from "./pages/Shared/Navbar";
-
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/UserRoutes";
 function App() {
   return (
     <div className="max-w-[1400px] mx-auto">
-      <Navbar />
-      <h2>This project is started</h2>
+      <RouterProvider router={router}/>
     </div>
   );
 }
