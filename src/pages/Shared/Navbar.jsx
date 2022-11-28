@@ -1,17 +1,24 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthContext';
-
+import { toast } from "react-hot-toast";
 const Navbar = () => {
-    const { user } = useContext(authContext);
+    const navigate = useNavigate();
+    const { user, logOut } = useContext(authContext);
     console.log(user);
+    const logOutHandeler = () => {
+        logOut().then(() => {
+            toast.success("Logout successful!");
+            navigate("/");
+        })
+    }
     const navItems = <>
         <li><Link to="/">Item 1</Link></li>
         <li><Link to="/">Item 3</Link></li>
         {
             user?<>
-                <li><Link to="/">Log out</Link></li>
+                <li onClick={logOutHandeler}><Link>Log out</Link></li>
                 <li><img src={user.photoURL} alt='' title={user.displayName} style={{"width":"2rem","height":"2rem","borderRadius":"50%"}} /></li>
             </>:<>
                 <li><Link to="/login">Login</Link></li>

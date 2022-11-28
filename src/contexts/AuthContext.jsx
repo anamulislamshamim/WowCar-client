@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext } from 'react';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { toast } from "react-hot-toast";
 import { useEffect } from 'react';
@@ -16,6 +16,10 @@ const AuthContext = ({ children }) => {
     const signInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider);
     };
+    // logOut
+    const logOut = () => {
+        return signOut(auth);
+    };
     // call the auth state change observer api
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -24,7 +28,7 @@ const AuthContext = ({ children }) => {
         });
         return () => unsubscribe();
     },[]);
-    const authInfo={ signInWithGoogle, user, loading };
+    const authInfo={ signInWithGoogle, user, loading, logOut };
     return (
         <authContext.Provider value={authInfo}>
             { children }
