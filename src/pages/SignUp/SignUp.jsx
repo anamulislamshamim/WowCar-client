@@ -1,9 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
-
+import { useContext } from 'react';
+import { authContext } from '../../contexts/AuthContext';
+import { toast } from "react-hot-toast";
 
 export const Register = () => {
+    const navigate = useNavigate();
+    const { signInWithGoogle } = useContext(authContext);
+    const googleSignInHandeler = () => {
+        signInWithGoogle().then((result) => {
+            console.log(result.user);
+            toast.success("Login Successful!");
+            navigate("/");
+        })
+    }
     return (
         <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="relative bg-white bg-opacity-75">
@@ -102,7 +113,7 @@ export const Register = () => {
                                 </form>
                                 <div className="mt-4 mb-2 sm:mb-4">
                                     <button
-                                        onClick={ '' }
+                                        onClick={ googleSignInHandeler }
                                         className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide hover:text-white transition duration-200 rounded shadow-md hover:bg-blue-600 focus:shadow-outline focus:outline-none"
                                     >
                                         <FaGoogle /> Sign In With Google

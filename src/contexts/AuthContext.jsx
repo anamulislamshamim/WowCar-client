@@ -14,12 +14,7 @@ const AuthContext = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, googleProvider)
-        .then(result => {
-            if(result){
-                toast.success("Login Successful!");
-            }
-        })
+        return signInWithPopup(auth, googleProvider);
     };
     // call the auth state change observer api
     useEffect(() => {

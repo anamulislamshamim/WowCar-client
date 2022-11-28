@@ -10,7 +10,10 @@ const Navbar = () => {
         <li><Link to="/">Item 1</Link></li>
         <li><Link to="/">Item 3</Link></li>
         {
-            user?<li><Link to="/">Log out</Link></li>:<>
+            user?<>
+                <li><Link to="/">Log out</Link></li>
+                <li><img src={user.photoURL} alt='' title={user.displayName} style={{"width":"2rem","height":"2rem","borderRadius":"50%"}} /></li>
+            </>:<>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/register">Sign Up</Link></li>
             </>
