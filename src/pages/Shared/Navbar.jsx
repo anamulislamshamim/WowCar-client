@@ -1,9 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { authContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
+    const { user } = useContext(authContext);
+    console.log(user);
     const navItems = <>
-        <li><a href="/">Item 1</a></li>
-        <li><a href="/">Item 3</a></li>
+        <li><Link to="/">Item 1</Link></li>
+        <li><Link to="/">Item 3</Link></li>
+        {
+            user?<li><Link to="/">Log out</Link></li>:<>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Sign Up</Link></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 flex justify-between">
@@ -16,7 +27,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a href="/" className="btn btn-ghost normal-case text-xl"><span className='text-3xl text-green-400 font-semibold'>W</span>ow<span className='text-3xl text-green-400 font-semibold'>C</span>ar</a>
+                <Link to="/" className="btn btn-ghost normal-case text-xl"><span className='text-3xl text-green-400 font-semibold'>W</span>ow<span className='text-3xl text-green-400 font-semibold'>C</span>ar</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -24,7 +35,7 @@ const Navbar = () => {
                 </ul>
             </div>
             {/* <div className="navbar-end">
-                <a href="/" className="btn">Get started</a>
+                <Link to="/" className="btn">Get started</Link>
             </div> */}
         </div>
     );
