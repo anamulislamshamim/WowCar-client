@@ -1,7 +1,6 @@
 import React from 'react';
 import { MdVerifiedUser } from "react-icons/md";
-import { Link } from 'react-router-dom';
-const UsedCarCard = ({ car }) => {
+const UsedCarCard = ({ car, setBookCar }) => {
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={car.picture} alt={car.model} style={{ "height": "200px" }} /></figure>
@@ -20,7 +19,7 @@ const UsedCarCard = ({ car }) => {
                     <p>new: ${car.originalPrice}</p>
                 </div>
                 <p>{car.description.length > 100 ? car.description.slice(0, 100) + "...more" : car.description}</p>
-                <Link><button className='btn border-0 w-full mt-5 bg-green-400 text-white font-semibold'>Book Now</button></Link>
+                <label onClick={ () => setBookCar(car) } htmlFor="book-now-modal" className="btn border-0 w-full mt-5 bg-green-400 text-white font-semibold">Book Now</label>
             </div>
         </div>
     );

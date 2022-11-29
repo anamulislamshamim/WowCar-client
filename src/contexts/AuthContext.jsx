@@ -1,8 +1,7 @@
 import React from 'react';
 import { createContext } from 'react';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { toast } from "react-hot-toast";
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -20,6 +19,21 @@ const AuthContext = ({ children }) => {
     const logOut = () => {
         return signOut(auth);
     };
+    // create user with email and password:
+    const registerWithEmailAndPassword = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password);
+    };
+    // login with email and password:
+    const loginWithEmailAndPassword = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    };
+    // update user profile like add displayName and phtoURL
+    const profileUpdate = (name, image) => {
+        return updateProfile(auth.currentUser, {
+            displayName:name,
+            photoURL:image
+        })
+    };
     // call the auth state change observer api
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -28,7 +42,7 @@ const AuthContext = ({ children }) => {
         });
         return () => unsubscribe();
     },[]);
-    const authInfo={ signInWithGoogle, user, loading, logOut };
+    const authInfo={ signInWithGoogle, user, loading, logOut, registerWithEmailAndPassword, loginWithEmailAndPassword, profileUpdate };
     return (
         <authContext.Provider value={authInfo}>
             { children }

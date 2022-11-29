@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
+import { Blog } from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
                 path:"/used-cars/:category",
                 loader:({ params }) => fetch(`http://localhost:4000/used-cars/${ params.category }`),
                 element:<PrivateRoutes><ShowCardByCategory /></PrivateRoutes>
+            },
+            {
+                path:"/blog",
+                element:<Blog />
             }
         ]
     },
