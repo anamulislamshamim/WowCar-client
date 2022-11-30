@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
-function AllSellers() {
+function AllBuyers() {
     const [sellers, setSellers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/all/sellers")
+        fetch("http://localhost:4000/all/buyers")
             .then(res => res.json())
             .then(data => {
                 setSellers(data);
@@ -15,7 +15,7 @@ function AllSellers() {
     }, []);
     const sellerDeleteHandeler = (email) => {
         console.log(email);
-        fetch(`http://localhost:4000/seller/delete/${ email }`, {
+        fetch(`http://localhost:4000/buyer/delete/${ email }`, {
             method:"DELETE"
         })
         .then(res => res.json())
@@ -34,9 +34,9 @@ function AllSellers() {
             <table className="table w-full">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Seller Name</th>
-                        <th>Email</th>
+                        <th>No.</th>
+                        <th>Buyer Name</th>
+                        <th>Buyer Email</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@ function AllSellers() {
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                 </button></td>
                             </tr>
-                        </>):<tr>No seller register yet!</tr>
+                        </>):<tr>No Buyer register yet!</tr>
                     }
                 </tbody>
             </table>
@@ -59,4 +59,4 @@ function AllSellers() {
     )
 }
 
-export default AllSellers
+export default AllBuyers

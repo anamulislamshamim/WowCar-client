@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { authContext } from '../../../contexts/AuthContext';
+import toast from 'react-hot-toast';
 function MyProducts() {
     const { user } = useContext(authContext);
     const [products, setProducts] = useState([]);
@@ -8,7 +9,17 @@ function MyProducts() {
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [user.email])
-
+    const updateHandeler = id => {
+        fetch(`http://localhost:4000/update/${ id }`, {
+            method:"PUT"
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.updatedCount){
+                toast.success("Updated successfully!");
+            }
+        })
+    };
     return (
         <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -19,13 +30,12 @@ function MyProducts() {
                         <th>Brand & Model</th>
                         <th>Milege, Seller, Current Price, New Price</th>
                         <th>Seller email & his/her statement</th>
-                        <th></th>
+                        <th>Add status & Remove</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        products.map((product, idx) => <>
-                            <tr>
+                        products.map((product, idx) =><tr key={ product._id}>
                                 <th>
                                     {idx + 1}
                                 </th>
@@ -53,12 +63,14 @@ function MyProducts() {
 
                                 </td>
                                 <th>
+                                    {
+                                        !product.add ? <button className="btn bg-green-400 px-1 py-1" onClick={ () => updateHandeler(product._id) }>Advertice</button>:<button className='bg-green-400 text-white p-2 rounded'>Adverticed</button>
+                                    }
                                     <button className="btn btn-circle btn-ghost">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                     </button>
                                 </th>
-                            </tr>
-                        </>)
+                            </tr>)
                     }
                 </tbody>
             </table>

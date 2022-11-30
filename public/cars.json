@@ -13,6 +13,7 @@
       "phone": "+1 (897) 600-3548",
       "seats": 2,
       "color": "white",
+      "add":true,
       "description": "Maximum performance. ... As soon as the starting light turns green, the new 911 GT3 RS delivers unbelievable performance on the race track with up to 465 Nm"
     },
     {
@@ -29,6 +30,7 @@
       "phone": "+1 (825) 442-3973",
       "seats": 2,
       "color": "black",
+      "add":true,
       "description": "Audi's R8 supercar boasts a howling V-10 engine just behind its snug two-seat cabin, shares a chassis with the Lamborghini Huracán, and is on its way out."
     },
     {
@@ -45,6 +47,7 @@
       "phone": "+1 (934) 403-2887",
       "seats": 4,
       "color": "red",
+      "add":true,
       "description": "Lamborgini. Inspirational designs, illustrations, and graphic elements from the world's best designers. Want more inspiration? "
     },
     {
@@ -61,6 +64,7 @@
       "phone": "+1 (815) 491-2808",
       "seats": 4,
       "color": "white",
+      "add":true,
       "description": "The CHIRON is the fastest, most powerful, and exclusive production super sports car in BUGATTI's history. "
     },
     {
@@ -77,6 +81,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "black",
+      "add":true,
       "description": "The Ferrari Roma, which was unveiled back in November 2019, has finally arrived in India, with the company announcing its prices in the country. "
     },
     {
@@ -93,6 +98,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "white",
+      "add":true,
       "description": "Mercedes-Benz has launched the new-gen S-Class in the country. The model, which arrives in the country through the CBU route, is available in two variants that include the S450 and S400d."
     },
     {
@@ -109,6 +115,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "black",
+      "add":true,
       "description": "The Ferrari Roma, which was unveiled back in November 2019, has finally arrived in India, with the company announcing its prices in the country. "
     },
     {
@@ -125,6 +132,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "white",
+      "add":true,
       "description": "The brand’s smallest four-door, the BMW 2 Series Gran Coupe, was launched on 15 October 2022."
     },
     {
@@ -141,6 +149,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "Olive",
+      "add":true,
       "description": "The new Audi A8L facelift is available in two variants known as Celebration Edition and Technology."
     },
     {
@@ -157,6 +166,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "greenish",
+      "add":true,
       "description": "With over five years experience building beautiful artisan micro-campers, from the Volkswagen Caddy range, we were literally ‘buzzing’ to learn about the ID Buzz hitting the electric vehicle market."
     },
     {
@@ -173,6 +183,7 @@
       "phone": "+1 (999) 535-2187",
       "seats": 4,
       "color": "Red",
+      "add":true,
       "description": "This is a insane car from Porsche. German auto giant finnaly revel such a beautiful car."
     }
   ]

@@ -11,6 +11,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import AddCar from "../pages/Dashboard/AddCar/AddCar";
 import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
 import AllSellers from "../pages/Dashboard/AllSellers/AllSellers";
+import AllBuyers from "../pages/Dashboard/AllBuyers/AllBuyers";
 
 const router = createBrowserRouter([
     {
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path:"/dashboard/all-buyers",
-                        element:<p>all buyers</p>
+                        element:<AllBuyers />
                     },
                     {
                         path:"/dashboard/reported-items",
