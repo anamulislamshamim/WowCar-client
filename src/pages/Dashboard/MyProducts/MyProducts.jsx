@@ -5,13 +5,16 @@ function MyProducts() {
     const { user } = useContext(authContext);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:4000/seller/products/${user.email}`)
+        fetch(`http://localhost:4000/seller/products/${user.email}`,{
+            authorization:`bearer ${ localStorage.getItem('auth_token') }`
+        })
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [user.email])
     const updateHandeler = id => {
         fetch(`http://localhost:4000/update/${ id }`, {
-            method:"PUT"
+            method:"PUT",
+            authorization:`bearer ${ localStorage.getItem('auth_token') }`
         }).then(res => res.json())
         .then(data => {
             console.log(data);

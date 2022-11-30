@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MdVerifiedUser } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { authContext } from '../../contexts/AuthContext';
 const UsedCarCard = ({ car, setBookCar, home }) => {
-    const { user } = useContext(authContext);
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><Link to={`/used-cars/${ car.category }`}><img src={car.picture} alt={car.model} style={{ "height": "200px" }} /></Link></figure>

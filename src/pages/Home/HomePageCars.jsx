@@ -21,7 +21,7 @@ const HomePageCars = () => {
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6'>
                 {
-                    carData.map(car => <UsedCarCard key={ car._id } car={ car } />)
+                    carData.map(car => <UsedCarCard home={ true } key={ car._id } car={ car } />)
                 }
             </div>
         </div>

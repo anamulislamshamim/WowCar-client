@@ -1,20 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthContext';
+import useToken from '../../hooks/useToken';
 export const Register = () => {
     const { loginWithEmailAndPassword } = useContext(authContext);
-    const navigate = useNavigate();
+    const [ currentUserEmail, setCurrentUserEmail ] = useState('');
     const {register, handleSubmit, formState:{errors}} = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [ token ] = useToken(currentUserEmail);
+    const from = location.state?.from?.pathname || '/';
+    if(token){
+        navigate(from, { replace: true });
+    };
     const loginHandeler = (data) => {
         loginWithEmailAndPassword(data.email, data.password)
         .then(result => {
             if(result.user.uid){
+                // get authentication token:
+                setCurrentUserEmail(result.user.email);
                 toast.success("Successfully login!");
-                navigate("/");
             }
         })
     };

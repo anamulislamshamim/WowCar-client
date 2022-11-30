@@ -1,9 +1,10 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { authContext } from '../contexts/AuthContext';
 import { toast } from "react-hot-toast";
 const PrivateRoutes = ({ children }) => {
+    const location = useLocation();
     const { user, loading } = useContext(authContext);
     const toastId = toast.loading("Please wait...");
     if(loading){
@@ -11,7 +12,7 @@ const PrivateRoutes = ({ children }) => {
     };
     toast.dismiss();
     if(!user){
-        return <Navigate to="/login" />;
+        return <Navigate to="/login" state={{ from: location }} replace />;;
     };
     return children;
 };
