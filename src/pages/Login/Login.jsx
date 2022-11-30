@@ -1,7 +1,23 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { authContext } from '../../contexts/AuthContext';
 export const Register = () => {
+    const { loginWithEmailAndPassword } = useContext(authContext);
+    const navigate = useNavigate();
+    const {register, handleSubmit, formState:{errors}} = useForm();
+    const loginHandeler = (data) => {
+        loginWithEmailAndPassword(data.email, data.password)
+        .then(result => {
+            if(result.user.uid){
+                toast.success("Successfully login!");
+                navigate("/");
+            }
+        })
+    };
     return (
         <div className="relative">
             <div className="relative bg-white bg-opacity-75">
@@ -15,7 +31,7 @@ export const Register = () => {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Please Login
                                 </h3>
-                                <form onSubmit={ '' }>
+                                <form onSubmit={handleSubmit(loginHandeler)}>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="email"
@@ -25,13 +41,16 @@ export const Register = () => {
                                         </label>
                                         <input
                                             placeholder="Email"
-                                            onBlur={''}
+                                            {...register("email",{ required:"Email is required!"})}
                                             required
                                             type="email"
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="email"
                                             name="email"
                                         />
+                                        {
+                                            errors.email && <p className='text-red-800'>{ errors.email.message }</p>
+                                        }
                                     </div>
                                     <div className="mb-1 sm:mb-2">
                                         <label
@@ -42,12 +61,16 @@ export const Register = () => {
                                         </label>
                                         <input
                                             placeholder="Password"
+                                            {...register("password",{ required:"Password is required!"})}
                                             required
                                             type="password"
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="password"
                                             name="password"
                                         />
+                                        {
+                                            errors.password && <p className='text-red-800'>{ errors.password.message }</p>
+                                        }
                                     </div>
                                     <p><Link className='mb-1 sm:mb-2 text-green-600'>Forgotten password?</Link></p>
                                     <div className="mt-4 mb-2 sm:mb-4">

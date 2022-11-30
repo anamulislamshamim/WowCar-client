@@ -15,9 +15,9 @@ const HomePageCars = () => {
         <div className='my-10'>
             <h1 className='mb-5 text-3xl font-semibold lg:pl-0 pl-3'>Here is your <span className='text-green-400 font-semibold'>Car!</span></h1>
             <div className='flex gap-5 mb-5 font-bold text-2xl'>
-                <Link to="/used-cars/sports">Sports</Link>
-                <Link to="/used-cars/luxury">Luxury</Link>
-                <Link to="/used-cars/family">Family</Link>
+                <Link className='bg-green-400 px-2 py-1 rounded text-white font-semibold' to="/used-cars/sports">Sports</Link>
+                <Link className='bg-green-400 px-2 py-1 rounded text-white font-semibold' to="/used-cars/luxury">Luxury</Link>
+                <Link className='bg-green-400 px-2 py-1 rounded text-white font-semibold' to="/used-cars/family">Family</Link>
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6'>
                 {

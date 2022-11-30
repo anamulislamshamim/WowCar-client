@@ -7,6 +7,10 @@ import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
 import { Blog } from "../pages/Blog/Blog";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import AddCar from "../pages/Dashboard/AddCar/AddCar";
+import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
+import AllSellers from "../pages/Dashboard/AllSellers/AllSellers";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +30,44 @@ const router = createBrowserRouter([
             {
                 path:"/blog",
                 element:<Blog />
+            },
+            {
+                path:"/dashboard",
+                element:<PrivateRoutes><Dashboard /></PrivateRoutes>,
+                children:[
+                    {
+                        path:"/dashboard",
+                        element:<p>Welcome to the Dashboard!</p>
+                    },
+                    {
+                        path:"/dashboard/add-product",
+                        element:<AddCar />
+                    },
+                    {
+                        path:"/dashboard/my-buyers",
+                        element:<p>My buyers</p>
+                    },
+                    {
+                        path:"/dashboard/my-orders",
+                        element:<p>Here is my orders</p>
+                    },
+                    {
+                        path:"/dashboard/my-products",
+                        element:<MyProducts />
+                    },
+                    {
+                        path:"/dashboard/all-sellers",
+                        element:<AllSellers />
+                    },
+                    {
+                        path:"/dashboard/all-buyers",
+                        element:<p>all buyers</p>
+                    },
+                    {
+                        path:"/dashboard/reported-items",
+                        element:<p>Here are all reported items</p>
+                    }
+                ]
             }
         ]
     },

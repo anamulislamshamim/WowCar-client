@@ -6,22 +6,20 @@ import { toast } from "react-hot-toast";
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, logOut } = useContext(authContext);
-    console.log(user);
     const logOutHandeler = () => {
         logOut().then(() => {
             toast.success("Logout successful!");
             navigate("/");
         })
     };
-    console.log("user", user);
     const navItems = <>
-        <li><Link to="/">Item 1</Link></li>
         <li><Link to="/blog">Blog</Link></li>
         {
-            user?<>
+            user ? <>
+                <li><Link to="/dashboard">Dashboard</Link></li>
                 <li onClick={logOutHandeler}><Link>Log out</Link></li>
-                <li><img src={user.photoURL} alt='profile pic' title={user.displayName} style={{"width":"4rem","height":"4rem","borderRadius":"50%"}} /></li>
-            </>:<>
+                <li><img src={user.photoURL} alt='profile pic' title={user.displayName} style={{ "width": "4rem", "height": "4rem", "borderRadius": "50%" }} /></li>
+            </> : <>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/register">Sign Up</Link></li>
             </>
@@ -34,7 +32,7 @@ const Navbar = () => {
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navItems}
                     </ul>
                 </div>
@@ -45,6 +43,9 @@ const Navbar = () => {
                     {navItems}
                 </ul>
             </div>
+            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             {/* <div className="navbar-end">
                 <Link to="/" className="btn">Get started</Link>
             </div> */}

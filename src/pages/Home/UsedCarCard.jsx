@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdVerifiedUser } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import { authContext } from '../../contexts/AuthContext';
 const UsedCarCard = ({ car, setBookCar }) => {
+    const { user } = useContext(authContext);
     return (
         <div className="card bg-base-100 shadow-xl">
-            <figure><img src={car.picture} alt={car.model} style={{ "height": "200px" }} /></figure>
+            <figure><Link to={`/used-cars/${ car.category }`}><img src={car.picture} alt={car.model} style={{ "height": "200px" }} /></Link></figure>
             <div className="card-body">
                 <h2 className="card-title">
                     {car.model}
@@ -19,7 +22,11 @@ const UsedCarCard = ({ car, setBookCar }) => {
                     <p>new: ${car.originalPrice}</p>
                 </div>
                 <p>{car.description.length > 100 ? car.description.slice(0, 100) + "...more" : car.description}</p>
-                <label onClick={ () => setBookCar(car) } htmlFor="book-now-modal" className="btn border-0 w-full mt-5 bg-green-400 text-white font-semibold">Book Now</label>
+                {
+                    user && <>
+                        <label onClick={ () => setBookCar(car) } htmlFor="book-now-modal" className="btn border-0 w-full mt-5 bg-green-400 text-white font-semibold">Book Now</label>
+                    </>
+                }
             </div>
         </div>
     );

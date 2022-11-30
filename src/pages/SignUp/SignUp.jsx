@@ -22,6 +22,17 @@ export const Register = () => {
         })
     };
     const submitHandeler = (data) => {
+        let role;
+        if (isSeller) {
+            role = 'seller';
+        } else {
+            role = 'buyer';
+        };
+        const user = {
+            name: data.fullName,
+            email: data.email,
+            role: role,
+        };
         const image = data.profilePicture[0];
         const formData = new FormData();
         formData.append("image", image);
@@ -35,11 +46,20 @@ export const Register = () => {
                     })
                         .then(res => res.json())
                         .then((Imagebbdata) => {
-                            profileUpdate(data.fullName, Imagebbdata.data.url)
+                            profileUpdate(data.fullName, Imagebbdata.data?.url)
                                 .then(() => {
                                     console.log("imagebb: ", data);
-                                    toast.success("User created successfully!");
-                                    navigate("/");
+                                    // store the user into the mongodb database
+                                    fetch(`http://localhost:4000/create-user`, {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body:JSON.stringify(user)
+                                    }).then(res => res.json())
+                                        .then(data => {
+                                            console.log(data);
+                                            toast.success("User created successfully!");
+                                            navigate("/");
+                                        })
                                 })
                                 .catch((err) => {
                                     toast.error(err);
