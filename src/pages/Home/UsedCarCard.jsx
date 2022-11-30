@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MdVerifiedUser } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthContext';
-const UsedCarCard = ({ car, setBookCar }) => {
+const UsedCarCard = ({ car, setBookCar, home }) => {
     const { user } = useContext(authContext);
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -23,7 +23,7 @@ const UsedCarCard = ({ car, setBookCar }) => {
                 </div>
                 <p>{car.description.length > 100 ? car.description.slice(0, 100) + "...more" : car.description}</p>
                 {
-                    user && <>
+                    home && <>
                         <label onClick={ () => setBookCar(car) } htmlFor="book-now-modal" className="btn border-0 w-full mt-5 bg-green-400 text-white font-semibold">Book Now</label>
                     </>
                 }
