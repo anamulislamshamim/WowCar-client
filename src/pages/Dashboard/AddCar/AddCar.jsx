@@ -38,7 +38,9 @@ const AddCar = () => {
                 console.log(newCar);
                 fetch(`http://localhost:4000/add-car`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { "Content-Type": "application/json",
+                    authorization:`bearer ${ localStorage.getItem('auth_token') }`
+                    },
                     body: JSON.stringify(newCar)
                 }).then(res => res.json())
                     .then(data => {

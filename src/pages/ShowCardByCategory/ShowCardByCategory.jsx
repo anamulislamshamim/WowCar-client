@@ -15,7 +15,7 @@ const ShowCardByCategory = () => {
             }
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-10'>
                 {
-                    cars.map(car => <UsedCarCard home={ true } key={car._id} setBookCar={ setBookCar } car={car} />)
+                    cars.map(car => <UsedCarCard home={ false } key={car._id} setBookCar={ setBookCar } car={car} />)
                 }
             </div>
             {

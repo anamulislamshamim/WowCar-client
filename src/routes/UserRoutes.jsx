@@ -12,6 +12,7 @@ import AddCar from "../pages/Dashboard/AddCar/AddCar";
 import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
 import AllSellers from "../pages/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../pages/Dashboard/AllBuyers/AllBuyers";
+import MyBookedCars from "../pages/Dashboard/MyBookedCars/MyBookedCars";
 
 const router = createBrowserRouter([
     {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path:"/dashboard/my-orders",
-                        element:<p>Here is my orders</p>
+                        element:<MyBookedCars />
                     },
                     {
                         path:"/dashboard/my-products",

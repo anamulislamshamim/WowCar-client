@@ -1,6 +1,10 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const Banner = () => {
+    const bannerButtonHandeler = () => {
+        toast.error("Sorry! This feature is under development!");
+    }
     return (
         <div className="hero">
             <div className="hero-content flex-col md:flex-row-reverse justify-between">
@@ -10,8 +14,8 @@ const Banner = () => {
                 <div className='md:w-2/5'>
                     <h1 className="text-5xl font-bold">Welcome to WowCar</h1>
                     <p className="py-6">The free, easy way to change your car online. WowCar is the most reliable platform to exchange, buy a new car or sell the older car. We are here to give you any information about car. Thanks for being with us!</p>
-                    <p><button className="btn bg-green-400 border-0 w-3/5 rounded mb-5">Sell my car</button></p>
-                    <p><button className="btn bg-green-400 border-0 w-3/5 rounded">Buy a car</button></p>
+                    <p><button onClick={ bannerButtonHandeler } className="btn bg-green-400 border-0 w-3/5 rounded mb-5">Sell my car</button></p>
+                    <p><button onClick={ bannerButtonHandeler } className="btn bg-green-400 border-0 w-3/5 rounded">Buy a car</button></p>
                 </div>
             </div>
         </div>

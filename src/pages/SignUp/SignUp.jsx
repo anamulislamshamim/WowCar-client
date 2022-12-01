@@ -1,26 +1,35 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { authContext } from '../../contexts/AuthContext';
 import { toast } from "react-hot-toast";
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import useToken from '../../hooks/useToken';
 export const Register = () => {
     console.log(process.env.REACT_APP_imagebb_secret);
     const [isSeller, setIsSeller] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUpError] = useState('');
+    const [currentUserEmail, setCurrentUserEmail] = useState('');
     const [accept, setAccept] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const [token]=useToken(currentUserEmail);
     const { signInWithGoogle, registerWithEmailAndPassword, profileUpdate } = useContext(authContext);
     const googleSignInHandeler = () => {
         signInWithGoogle().then((result) => {
             console.log(result.user);
+            setCurrentUserEmail(result.user.email);
             toast.success("Login Successful!");
-            navigate("/");
+            navigate(from, { replace: true });
         })
     };
+    if(token){
+        
+    }
     const submitHandeler = (data) => {
         let role;
         if (isSeller) {

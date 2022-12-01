@@ -4,7 +4,9 @@ import toast from 'react-hot-toast';
 function AllSellers() {
     const [sellers, setSellers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/all/sellers")
+        fetch("http://localhost:4000/all/sellers", {
+            authorization:`bearer ${ localStorage.getItem('auth_token') }`
+        })
             .then(res => res.json())
             .then(data => {
                 setSellers(data);
@@ -16,7 +18,10 @@ function AllSellers() {
     const sellerDeleteHandeler = (email) => {
         console.log(email);
         fetch(`http://localhost:4000/seller/delete/${ email }`, {
-            method:"DELETE"
+            method:"DELETE",
+            headers:{
+                authorization:`bearer ${ localStorage.getItem('auth_token') }`
+            }
         })
         .then(res => res.json())
         .then(result => {
