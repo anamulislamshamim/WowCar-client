@@ -18,7 +18,7 @@ function MyBookedCars() {
                         </th>
                         <th>Brand & Model</th>
                         <th>Milege, Seller, Current Price, New Price</th>
-                        <th>Seller email & his/her statement</th>
+                        <th>Payment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,8 +47,7 @@ function MyBookedCars() {
                                 <span className="badge badge-ghost badge-sm"></span>
                             </td>
                             <td>
-                                Email: {product.email || "Not Available!"}<br />
-
+                                <button className='btn bg-green-400 text-white border-0'>Pay</button>
                             </td>
                         </tr>)
                     }

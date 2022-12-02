@@ -6,16 +6,18 @@ import { authContext } from '../../contexts/AuthContext';
 const UsedCarCard = ({ car, setBookCar, home }) => {
     const navigate = useNavigate();
     const { user } = useContext(authContext);
-    const reportHandeler = (id) => {
+    const reportHandeler = (reportCar) => {
         if(!user){
             navigate("/login");
             toast.error("Please login first!");
             return;
         };
+        // console.log(reportCar); 
         const reportInfo = {
             name:user.displayName,
             email:user.email,
-            productId:id
+            picture:reportCar.picture,
+            productId:reportCar._id
         };
         fetch(`http://localhost:4000/report`,{
             method:"POST",
@@ -45,7 +47,7 @@ const UsedCarCard = ({ car, setBookCar, home }) => {
                         {car.model}
                         <div className="badge bg-green-400 border-none ml-3">used</div>
                     </div>
-                    <button onClick={ () => reportHandeler(car._id) } className='btn hover:bg-green-400 hover:text-white btn-ghost'>Report</button>
+                    <button onClick={ () => reportHandeler(car) } className='btn hover:bg-green-400 hover:text-white btn-ghost'>Report</button>
                 </h2>
                 {
                     car.varified ? <p className='flex items-center'>{car.seller} <span className='text-blue-400'><MdVerifiedUser /></span></p> : <p>{car.seller}</p>

@@ -13,6 +13,7 @@ import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
 import AllSellers from "../pages/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../pages/Dashboard/AllBuyers/AllBuyers";
 import MyBookedCars from "../pages/Dashboard/MyBookedCars/MyBookedCars";
+import ReportedItems from "../pages/Dashboard/ReportedItems/ReportedItems";
 
 const router = createBrowserRouter([
     {
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path:"/dashboard/reported-items",
-                        element:<p>Here are all reported items</p>
+                        element:<ReportedItems />
                     }
                 ]
             }
